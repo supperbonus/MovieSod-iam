@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<h2>แก้ไขข้อมูลบัญชีของคุณ</h2>
+<div>
+    <div>
+        <form action="{{ url_for('edit_profile') }}" method="post">
+            <label for="username">ชื่อผู้ใช้</label>
+            <input type="text" value="{{ account['username'] }}" name="username" id="username" placeholder="Username">
+            <label for="password">รหัสผ่าน</label>
+            <input type="password" value="" name="password" id="password" placeholder="Password">
+            <label for="email">อีเมล</label>
+            <input type="email" value="{{ account['email'] }}" name="email" id="email" placeholder="Email address">
+            <br>
+            <input type="submit" value="Save">
+        </form>
+        <p>{{ msg }}</p>
+    </div>
+</div>
+{% endblock %}
