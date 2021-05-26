@@ -77,7 +77,3 @@ def main():
                      "May 3, 2017")
     movies = [ae, sm, ach, oh, ou, sr, ax, am, cd, ee, we,wa]
     fresh_tomatoes.open_movies_page(movies)
-
-
-if __name__ == '__main__':
-    main()
