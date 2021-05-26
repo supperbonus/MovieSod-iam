@@ -1,0 +1,42 @@
+{% extends 'admin/layout.html' %}
+
+{% block title %}Accounts{% endblock %}
+
+{% block content %}
+<h2>การจัดการบัญชีผู้ใช้</h2>
+
+<div class="links">
+    <a href="{{ url_for('admin_account') }}">สร้างบัญชีผู้ใช้</a>
+</div>
+
+<div class="content-block">
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <td>Username</td>
+                    <td class="responsive-hidden">Password</td>
+                    <td class="responsive-hidden">Email</td>
+                    <td class="responsive-hidden">Role</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if not accounts %}
+                <tr>
+                    <td colspan="8" style="text-align:center;">ไม่มีบัญชีผู้ใช้ในระบบ</td>
+                </tr>
+                {% else %}
+                {% for account in accounts %}
+                <tr class="details" onclick="location.href='{{ url_for('admin_account', id=account['id'])}}'">
+                    <td>{{ account['username'] }}</td>
+                    <td class="responsive-hidden" style="word-break:break-all;">{{ account['password'] }}</td>
+                    <td class="responsive-hidden">{{ account['email'] }}</td>
+                    <td class="responsive-hidden">{{ account['role'] }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
