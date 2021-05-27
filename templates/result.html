@@ -1,0 +1,158 @@
+{% extends 'layout.html' %}
+
+{% block title %}Contentbase Filtering{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:300,500&amp;display=swap'>
+    <canvas id="myChart" width="800px" height="500px"></canvas>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["{{movie_names[0]}}", "{{movie_names[1]}}", "{{movie_names[2]}}", "{{movie_names[3]}}", "{{movie_names[4]}}"
+                    , "{{movie_names[5]}}", "{{movie_names[6]}}", "{{movie_names[7]}}", "{{movie_names[8]}}", "{{movie_names[9]}}"],
+                datasets: [{
+                    label: 'งบประมาณ',
+                    data: ["{{movie_budget[0]}}", "{{movie_budget[1]}}", "{{movie_budget[2]}}", "{{movie_budget[3]}}", "{{movie_budget[4]}}",
+                        "{{movie_budget[5]}}", "{{movie_budget[6]}}", "{{movie_budget[7]}}", "{{movie_budget[8]}}", "{{movie_budget[9]}}",],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }, {
+                    label: 'รายได้',
+                    data: ["{{movie_revenue[0]}}", "{{movie_revenue[1]}}", "{{movie_revenue[2]}}", "{{movie_revenue[3]}}", "{{movie_revenue[4]}}",
+                        "{{movie_revenue[5]}}", "{{movie_revenue[6]}}", "{{movie_revenue[7]}}", "{{movie_revenue[8]}}", "{{movie_revenue[9]}}",],
+                    backgroundColor: [
+                        'rgba(44,103,242,0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(49, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                },]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <style>
+        @media screen and (max-width:600px) {
+            .movie {
+                margin-top: 12vh;
+                margin-bottom: 12vh;
+            }
+        }
+
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="movie">
+        <h1><u>ผลลัพธ์ของการแนะนำแบบการกรองตามเนื้อหา</u></h1>
+        <p>ภาพยนตร์ที่มีความคล้ายกับเรื่อง {{ search_name }}</p>
+        <table class="movie_table" align="center">
+            <tr>
+                <th>ชื่อ ภาพยนตร์</th>
+                <th>รายได้($)</th>
+                <th>งบประมาณ($)</th>
+                <th>คะแนนโหวตเฉลี่ย</th>
+            </tr>
+            <tbody class="table_body">
+                <tr>
+                    <td>{{movie_names[0]}}</td>
+                    <td>{{movie_revenue[0]}}</td>
+                    <td>{{movie_budget[0]}}</td>
+                    <td>{{movie_vote_average[0]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[1]}}</td>
+                    <td>{{movie_revenue[0]}}</td>
+                    <td>{{movie_budget[1]}}</td>
+                    <td>{{movie_vote_average[1]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[2]}}</td>
+                    <td>{{movie_revenue[2]}}</td>
+                    <td>{{movie_budget[2]}}</td>
+                    <td>{{movie_vote_average[2]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[3]}}</td>
+                    <td>{{movie_revenue[3]}}</td>
+                    <td>{{movie_budget[3]}}</td>
+                    <td>{{movie_vote_average[3]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[4]}}</td>
+                    <td>{{movie_revenue[4]}}</td>
+                    <td>{{movie_budget[4]}}</td>
+                    <td>{{movie_vote_average[4]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[5]}}</td>
+                    <td>{{movie_revenue[5]}}</td>
+                    <td>{{movie_budget[5]}}</td>
+                    <td>{{movie_vote_average[5]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[6]}}</td>
+                    <td>{{movie_revenue[6]}}</td>
+                    <td>{{movie_budget[6]}}</td>
+                    <td>{{movie_vote_average[6]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[7]}}</td>
+                    <td>{{movie_revenue[7]}}</td>
+                    <td>{{movie_budget[7]}}</td>
+                    <td>{{movie_vote_average[7]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[8]}}</td>
+                    <td>{{movie_revenue[8]}}</td>
+                    <td>{{movie_budget[8]}}</td>
+                    <td>{{movie_vote_average[8]}}</td>
+                </tr>
+                <tr>
+                    <td>{{movie_names[9]}}</td>
+                    <td>{{movie_revenue[9]}}</td>
+                    <td>{{movie_budget[9]}}</td>
+                    <td>{{movie_vote_average[9]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+{% endblock %}
